@@ -16,6 +16,7 @@ __pycache__/
 data/*.tsv
 dumps/
 data/large/
+*.gz
 
 # secrets
 env.sh
