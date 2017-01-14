@@ -1,0 +1,25 @@
+# editor
+*.swp
+
+# logs
+*.log
+*.log.*
+
+# python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# large and ignorable data
+data/*.tsv
+dumps/
+data/large/
+
+# secrets
+env.sh
+secrets.sh
+
+# venv
+.venv
