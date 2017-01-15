@@ -4,11 +4,24 @@ from flask import request
 import os
 import pdb
 import psycopg2 as pg
-import pandas as pd
-import numpy as np
 import datetime
 import pdb
-from sklearn.linear_model import LogisticRegression
+
+from werkzeug.contrib.cache import SimpleCache
+
+CACHE_TIMEOUT = 360
+
+cache = SimpleCache()
+
+def get_cache(request):
+        key = (request.args.get('last').upper(), request.args.get('first'))
+        result = cache.get(key)
+        if result is None:
+            result = retrieve_user(request.args.get('first').upper(),
+                         request.args.get('last').upper(),
+                         request.args.get('dob') )
+            cache.set(key, result, timeout=CACHE_TIMEOUT)
+        return result
 
 # Get avg scores
 conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
@@ -24,8 +37,8 @@ avg_score = [int(x*100) for x in avg_score]
 
 # Utility functions
 def retrieve_user(first, last, dob):
-    if len(str(dob))<8:
-        return('DOB needs to be formatted: DDMMYYYY')
+    #if len(str(dob))<8:
+    #    return('DOB needs to be formatted: DDMMYYYY')
     
     conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
                       password=os.environ['VK_PW'], host=os.environ['VK_HOST'], port=os.environ['VK_PORT'])
@@ -56,10 +69,8 @@ def test():
 
 @app.route('/profile')
 def fancy_output():
-   
-    result = retrieve_user(request.args.get('first').upper(),
-                         request.args.get('last').upper(),
-                         request.args.get('dob') )
+    
+    result = get_cache(request)
     
     # Check if retrieved info
     if isinstance(result, str):
