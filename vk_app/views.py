@@ -30,6 +30,7 @@ def retrieve_user(first, last, dob):
     conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
                       password=os.environ['VK_PW'], host=os.environ['VK_HOST'], port=os.environ['VK_PORT'])
     cur = conn.cursor()
+    
     pred_sql = '''
                 SELECT score_total_scaled, local_general, national_presidential, national_midterm
                 FROM voter_grades
@@ -39,6 +40,7 @@ def retrieve_user(first, last, dob):
                 rawvoter.firstname = '{}'
                 AND rawvoter.lastname = '{}'
                 '''.format(first, last)
+    
 
     cur.execute(pred_sql)
     pred = cur.fetchall()
