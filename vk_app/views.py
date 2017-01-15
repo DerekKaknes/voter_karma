@@ -9,7 +9,7 @@ import pdb
 
 from werkzeug.contrib.cache import SimpleCache
 
-CACHE_TIMEOUT = 360
+CACHE_TIMEOUT = 300
 
 cache = SimpleCache()
 
