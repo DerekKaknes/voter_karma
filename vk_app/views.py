@@ -50,9 +50,9 @@ def retrieve_user(first, last, dob):
                 inner join rawvoter
                 on (rawvoter.id = voter_grades.raw_voter_id)
                 where 
-                rawvoter.firstname = '{}'
-                AND rawvoter.lastname = '{}'
-                '''.format(first, last)
+                rawvoter.lastname = '{}'
+                AND rawvoter.firstname like '{}%'
+                '''.format(last, first)
     
 
     cur.execute(pred_sql)
