@@ -80,4 +80,5 @@ def fancy_output():
                           over = result[0], over_avg = avg_score[0],
                            local = result[1], local_avg = avg_score[1] ,
                            pres = result[2], pres_avg = avg_score[2],
-                           mid = result[3], mid_avg = avg_score[3])
+                           mid = result[3], mid_avg = avg_score[3],
+                          name = request.args.get('first'))

@@ -1,68 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>VoterKarma Dashboard</title>
+	
+	<title>VoterKarma Home</title>
+	
 	<meta charset="utf-8">
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<script src="https://code.highcharts.com/highcharts.js"></script>
+	
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+
 	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 
+
+
+<style>
+body
+{
+background-color:rgb(82,115,153);
+}
+.borderless td, .borderless th, td {
+    border: none;
+}
+.table {
+    border-bottom:0px !important;
+}
+.table th, .table td {
+    border: 1px !important;
+}
+.fixed-table-container {
+    border:0px !important;
+}
+div>img
+{
+	margin:auto;
+}
+h4
+{
+	align:center;
+}
+</style>
+
 </head>
+
 <body>
+
 
 <!--in body navbar-->
 <nav class="navbar navbar-default navbar-fixed-top" style="border-color:rgb(117,158,205)">
-  <div class="container">
+  
+<div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>				
-      <a class="navbar-brand" href="#" style="color:rgb(117,158,205); font-size:150%; font-weight:bold;"><span style="color:black">Voter</span>Karma</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a class="headLink" style="color:rgb(117,158,205); font-size:150%;" href="dashboard.html">My Score</a></li>
-        <li><a href="about.html" style="color:rgb(117,158,205); font-size:150%;">About</a></li>
-        <li><a href="#" style="color:rgb(117,158,205); font-size:150%;">Improve My Score</a></li>
-	<li><a href="#"><span style="color:rgb(117,158,205); font-size:150%;" class="glyphicon glyphicon-user"></span></a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-<div style="height:50px;"></div>
 
-<center><div class = "container-fluid" style="padding-top:100px">
-    {% if error %}
-    <p style="color:#F05F40;"><strong>Error:</strong> {{ error }}
-    {% endif %}
-    <form  action="/profile" method="GET">
-        <div class="form-group">
-            <table>
-                <tr>
-                    <td><label for='first'>First Name:</label></td>
-                    <td><label for='last'>Last Name:</label></td>
-                    <td><label for='dob'>DOB:</label></td>
-                </tr>
-                <tr>
-                    <td><input style="color:#F05F40;" type="text" id="first" name='first' placeholder="e.g. John"></td>
-                    <td><input style="color:#F05F40;" type="text" id="last" name='last' placeholder="e.g. Smith"></td>
-                    <td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="e.g. 05051985"></td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary btn-xl page-scroll">Get My Score</button>
-        </div>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        
+	<span class="icon-bar"></span>
+
+ 
+      </button>				
+      
+	<a class="navbar-brand" href="input_frontpage.html" style="color:rgb(117,158,205); font-size:150%; font-weight:bold;">
+		<span style="color:black">Voter</span>Karma</a>
+    
+	</div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+<ul class="nav navbar-nav navbar-right">
+        	
+	<li><a href="#" style="color:rgb(117,158,205); font-weight:bold; font-size:150%;">Login<span class="glyphicon glyphicon-user"></span></a></li>
+      
+</ul>
+        
+</div>
+  
+</div>
+
+</nav>
+<!--end nav -->
+
+<div style="height:100px;"></div>
+
+<div class = "container-fluid">
+
+<div class="container text-center well">
+
+
+<h2 class="text-center">Find Out Your <span style="font-weight: bold;">Voter<span style=" color:rgb(117,158,205)">Karma</span></span> Today!</h2>  
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<form  action="/profile" method="GET">
+
+<div class="form-group">        
+	<table class="table borderless table-condensed">
+                
+		<tr>
+                    
+			<td><label for='first'>First Name:</label></td>
+                    
+			<td><input style="color:#F05F40;" type="text" id="first" name='first' placeholder="e.g. John"></td>
+ 
+		</tr>
+                
+		<tr>
+   
+			<td><label for='last'>Last Name:</label></td>
+                    
+			<td><input style="color:#F05F40;" type="text" id="last" name='last' placeholder="e.g. Smith"></td>
+  
+		</tr>
+                
+		<tr>
+ 
+
+			<td><label for='dob'>DOB:</label></td>
+               
+			<td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="e.g. 05051985"></td>
+     
+		</tr>
+                
+	</table>    
+</div>
+        
+<div>
+            
+<button type="submit" class="btn btn-primary btn-xl page-scroll" style="background-color:rgb(245,166,35); border-color:rgb(245,166,35);">Get My Score</button>
+       
+</div>
     </form>
-    </div></center>
+
+</div>
+<div class="col-sm-4"></div>
+</div>
+
+<!---new row about-->
+<div class="row" style="padding-top:50px;">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-2">
+		<img src="../../static/img/Voting.png" class="img-responsive" alt="voting">
+		<h4 class="text-center">Your voter history is compiled</h4>
+	</div>
+	<div class="col-sm-2">
+		<img  src="../../static/img/Arrow.png" class="img-responsive" alt="flow arrow" style="padding-top:40px">
+	</div>
+	<div class="col-sm-2">
+		<img src="../../static/img/Scores.png" class="img-responsive" alt="scores">
+		<h4 class="text-center">We analyze your election voting history</h4>
+	</div>
+	<div class="col-sm-2">
+		<img src="../../static/img/Arrow.png" class="img-responsive" alt="flow arrow" style="padding-top:40px">
+	</div>
+	<div class="col-sm-2">
+		<img src="../../static/img/Score.png" class="img-responsive" alt="score">
+		<h4 class="text-center">Your overall VoterKarma score is created</h4>
+	</div>
+	<div class="col-sm-1">
+	</div>
+</div>
+<!---end row about-->
+
+</div>
+
 </body>
+
 </html>
