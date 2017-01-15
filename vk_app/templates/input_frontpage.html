@@ -41,6 +41,9 @@
 <div style="height:50px;"></div>
 
 <center><div class = "container-fluid" style="padding-top:100px">
+    {% if error %}
+    <p style="color:#F05F40;"><strong>Error:</strong> {{ error }}
+    {% endif %}
     <form  action="/profile" method="GET">
         <div class="form-group">
             <table>
@@ -52,14 +55,14 @@
                 <tr>
                     <td><input style="color:#F05F40;" type="text" id="first" name='first' placeholder="e.g. John"></td>
                     <td><input style="color:#F05F40;" type="text" id="last" name='last' placeholder="e.g. Smith"></td>
-                    <td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="e.g. 050515"></td>
+                    <td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="e.g. 05051985"></td>
                 </tr>
             </table>
         </div>
         <div>
             <button type="submit" class="btn btn-primary btn-xl page-scroll">Get My Score</button>
         </div>
-    </form>    
+    </form>
     </div></center>
 </body>
 </html>

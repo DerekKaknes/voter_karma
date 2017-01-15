@@ -24,6 +24,9 @@ avg_score = [int(x*100) for x in avg_score]
 
 # Utility functions
 def retrieve_user(first, last, dob):
+    if len(str(dob))<8:
+        return('DOB needs to be formatted: DDMMYYYY')
+    
     conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
                       password=os.environ['VK_PW'], host=os.environ['VK_HOST'], port=os.environ['VK_PORT'])
     cur = conn.cursor()
@@ -38,44 +41,30 @@ def retrieve_user(first, last, dob):
                 '''.format(first, last)
 
     cur.execute(pred_sql)
-    pred = cur.fetchall()[0]
-    pred = [int(x*100) for x in pred]
-    print pred
-    return(pred)
-
+    pred = cur.fetchall()
+    if pred != []:
+        pred = [int(x*100) for x in pred[0]]
+        return(pred)
+    else:
+        return("Voter {} not found!".format(' '.join([first, last])))
+    
 @app.route('/')
 def test():
     return render_template('input_frontpage.html')
 
 @app.route('/profile')
 def fancy_output():
-
-    if request.args.get('first') == 'Frederick':
-        pred = retrieve_user('FREDERICK', 'WILSON', 0)
-        return render_template('dashboard.html',
-                          over = pred[0], over_avg = avg_score[0],
-                           local = pred[1], local_avg = avg_score[1] ,
-                           pres = pred[2], pres_avg = avg_score[2],
-                           mid = pred[3], mid_avg = avg_score[3])
-        
-    if request.args.get('first') == 'Sreenath':
-        pred = retrieve_user('SREENATH','SREENIVASAN', 1)
-        print pred
-        return render_template('dashboard.html',
-                          over = pred[0], over_avg = avg_score[0],
-                           local = pred[1], local_avg = avg_score[1] ,
-                           pres = pred[2], pres_avg = avg_score[2],
-                           mid = pred[3], mid_avg = avg_score[3])
-    
-    pred = retrieve_user(request.args.get('first').upper(),
+   
+    result = retrieve_user(request.args.get('first').upper(),
                          request.args.get('last').upper(),
-                         request.args.get('dob').upper() )
+                         request.args.get('dob') )
     
-    if pred is None:
-        return render_template('test.html', error="No results found for {}, try searching something else".format(request.args.get('first')))
+    # Check if retrieved info
+    if isinstance(result, str):
+        return render_template('input_frontpage.html', error=result)
     
     return render_template('dashboard.html',
-                          over = pred[0], over_avg = avg_score[0],
-                           local = pred[1], local_avg = avg_score[1] ,
-                           pres = pred[2], pres_avg = avg_score[2],
-                           mid = pred[3], mid_avg = avg_score[3])
+                          over = result[0], over_avg = avg_score[0],
+                           local = result[1], local_avg = avg_score[1] ,
+                           pres = result[2], pres_avg = avg_score[2],
+                           mid = result[3], mid_avg = avg_score[3])
