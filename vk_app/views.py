@@ -37,8 +37,8 @@ avg_score = [int(x*100) for x in avg_score]
 
 # Utility functions
 def retrieve_user(first, last, dob):
-    #if len(str(dob))<8:
-    #    return('DOB needs to be formatted: DDMMYYYY')
+    if len(str(dob))<8:
+        return('DOB needs to be formatted: YYYYMMDD')
     
     conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
                       password=os.environ['VK_PW'], host=os.environ['VK_HOST'], port=os.environ['VK_PORT'])
@@ -51,8 +51,9 @@ def retrieve_user(first, last, dob):
                 on (rawvoter.id = voter_grades.raw_voter_id)
                 where 
                 rawvoter.lastname = '{}'
+                AND rawvoter.dob = '{}'
                 AND rawvoter.firstname like '{}%'
-                '''.format(last, first)
+                '''.format(last, dob, first)
     
 
     cur.execute(pred_sql)

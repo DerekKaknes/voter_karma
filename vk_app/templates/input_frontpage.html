@@ -91,6 +91,9 @@ h4
 
 <div class = "container-fluid">
 
+    {% if error %}
+    <p style="color:#F05F40;"><strong>Error:</strong> {{ error }}
+    {% endif %}
 <div class="container text-center well">
 
 
@@ -124,7 +127,7 @@ h4
 
 			<td><label for='dob'>DOB:</label></td>
                
-			<td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="e.g. 05051985"></td>
+			<td><input style="color:#F05F40;" type="text" id="dob" name='dob' placeholder="format: YYYYMMDD"></td>
      
 		</tr>
                 
