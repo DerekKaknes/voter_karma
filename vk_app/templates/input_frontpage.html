@@ -91,9 +91,6 @@ h4
 
 <div class = "container-fluid">
 
-    {% if error %}
-    <p style="color:#F05F40;"><strong>Error:</strong> {{ error }}
-    {% endif %}
 <div class="container text-center well">
 
 
@@ -107,7 +104,9 @@ h4
 	<table class="table borderless table-condensed">
                 
 		<tr>
-                    
+            {% if error %}
+            <p style="color:#F05F40;"><strong>Error:</strong> {{ error }}
+            {% endif %}
 			<td><label for='first'>First Name:</label></td>
                     
 			<td><input style="color:#F05F40;" type="text" id="first" name='first' placeholder="e.g. John"></td>

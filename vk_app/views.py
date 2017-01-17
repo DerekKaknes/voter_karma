@@ -37,7 +37,7 @@ avg_score = [int(x*100) for x in avg_score]
 
 # Utility functions
 def retrieve_user(first, last, dob):
-    if len(str(dob))<8:
+    if (len(str(dob))<8)|(int(str(dob)[0:4]) not in range(1900,2012)):
         return('DOB needs to be formatted: YYYYMMDD')
     
     conn = pg.connect(database=os.environ['VK_DB'], user=os.environ['VK_U'], 
@@ -47,12 +47,12 @@ def retrieve_user(first, last, dob):
     pred_sql = '''
                 SELECT score_total_scaled, local_general, national_presidential, national_midterm
                 FROM voter_grades
-                inner join rawvoter
-                on (rawvoter.id = voter_grades.raw_voter_id)
+                inner join rawvoters
+                on (rawvoters.id = voter_grades.rawvoter_id)
                 where 
-                rawvoter.lastname = '{}'
-                AND rawvoter.dob = '{}'
-                AND rawvoter.firstname like '{}%'
+                rawvoters.lastname = '{}'
+                AND rawvoters.dob = '{}'
+                AND rawvoters.firstname like '{}%'
                 '''.format(last, dob, first)
     
 
