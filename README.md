@@ -1,10 +1,10 @@
 # VoterKarma App
 ## v 0.1
 
-This repo contains the all the resources for the (VoterKarma app)[http://voterkarma.herokuapp.com/] on Heroku.  Built using the (Flask)[http://flask.pocoo.org/] microframework and Bootstrap style templates.
+This repo contains the all the resources for the [VoterKarma app](http://voterkarma.herokuapp.com/) on Heroku.  Built using the [Flask](http://flask.pocoo.org/) microframework and Bootstrap style templates.
 
 ## Data
-Data comes from the NYC voterfile and is hosted on Amazon RDS.  An (API)[https://github.com/DerekKaknes/nycvoterfile] is currently under development.
+Data comes from the NYC voterfile and is hosted on Amazon RDS.  An [API](https://github.com/DerekKaknes/nycvoterfile) is currently under development.
 
 ## Scoring
 ### Model
