@@ -12,3 +12,5 @@ v.01 models use Logistic Regression for predicting probability of voting in Loca
 
 ### VoterKarma Score
 v.01 score is the sum of the predicted probability of voting for each of the three models scaled by the maximum value of the summed score.
+
+ignore this
